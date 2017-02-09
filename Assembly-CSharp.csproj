@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{BAA5552F-473A-E626-99FA-3648E849B432}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_4;UNITY_5_3;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_32;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\AVProVideo\Demos\Scripts\AutoRotate.cs" />
+     <Compile Include="Assets\AVProVideo\Demos\Scripts\ChangeVideoExample.cs" />
+     <Compile Include="Assets\AVProVideo\Demos\Scripts\DemoInfo.cs" />
+     <Compile Include="Assets\AVProVideo\Demos\Scripts\FrameExtract.cs" />
+     <Compile Include="Assets\AVProVideo\Demos\Scripts\Mapping3D.cs" />
+     <Compile Include="Assets\AVProVideo\Demos\Scripts\SampleApp.cs" />
+     <Compile Include="Assets\AVProVideo\Demos\Scripts\SampleApp_Multiple.cs" />
+     <Compile Include="Assets\AVProVideo\Demos\Scripts\SimpleController.cs" />
+     <Compile Include="Assets\AVProVideo\Demos\Scripts\SphereDemo.cs" />
+     <Compile Include="Assets\AVProVideo\Demos\Scripts\VCR.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Components\ApplyToMaterial.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Components\ApplyToMesh.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Components\CubemapCube.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Components\DisplayBackground.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Components\DisplayIMGUI.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Components\DisplayUGUI.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Components\MediaPlayer.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Components\UpdateStereoMaterial.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Internal\AndroidMediaPlayer.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Internal\BaseMediaPlayer.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Internal\Interfaces.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Internal\NullMediaPlayer.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Internal\OSXMediaPlayer.cs" />
+     <Compile Include="Assets\AVProVideo\Scripts\Internal\WindowsMediaPlayer.cs" />
+     <Compile Include="Assets\Scripts\ClockAnimator.cs" />
+     <Compile Include="Assets\Scripts\Donghua.cs" />
+     <Compile Include="Assets\Scripts\HexCell.cs" />
+     <Compile Include="Assets\Scripts\HexCoordinates.cs" />
+     <Compile Include="Assets\Scripts\HexGrid.cs" />
+     <Compile Include="Assets\Scripts\HexMapEditor.cs" />
+     <Compile Include="Assets\Scripts\HexMesh.cs" />
+     <Compile Include="Assets\Scripts\HexMetrics.cs" />
+     <Compile Include="Assets\Scripts\HoleCtrl.cs" />
+     <Compile Include="Assets\Scripts\NewStepThreeCtr.cs" />
+     <Compile Include="Assets\Scripts\Score.cs" />
+     <Compile Include="Assets\Scripts\StepFourCtr.cs" />
+     <Compile Include="Assets\Scripts\StepOneCtr.cs" />
+     <Compile Include="Assets\Scripts\StepThreeCtr.cs" />
+     <Compile Include="Assets\Scripts\ctr.cs" />
+     <Compile Include="Assets\Scripts\fps.cs" />
+     <Compile Include="Assets\Scripts\sprites.cs" />
+     <Compile Include="Assets\Scripts\tianfu.cs" />
+     <Compile Include="Assets\Scripts\udpouter.cs" />
+     <Compile Include="Assets\Scripts\udptest.cs" />
+     <Compile Include="Assets\Scripts\xmlreader.cs" />
+     <None Include="Assets\AVProVideo\Demos\Materials\UI-Default-ExtraTexture.shader" />
+     <None Include="Assets\AVProVideo\Demos\Materials\UI-DefaultFont-ExtraTexture.shader" />
+     <None Include="Assets\Materials\VertexColors.shader" />
+     <None Include="Assets\AVProVideo\Materials\InsideSphere.shader" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\AVProVideo\Demos\Materials\FillBackground.shader" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
