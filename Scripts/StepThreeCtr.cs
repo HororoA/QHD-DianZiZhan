@@ -46,13 +46,6 @@ public class StepThreeCtr : MonoBehaviour
     public static List<tianfu> PlayerStep2Defend = new List<tianfu>();
     public static List<tianfu> PlayerStep3Defend = new List<tianfu>();
 
-    public static List<tianfu> PCStep1Attack = new List<tianfu>();
-    public static List<tianfu> PCStep2Attack = new List<tianfu>();
-    public static List<tianfu> PCStep3Attack = new List<tianfu>();
-    public static List<tianfu> PCStep1Defend = new List<tianfu>();
-    public static List<tianfu> PCStep2Defend = new List<tianfu>();
-    public static List<tianfu> PCStep3Defend = new List<tianfu>();
-
     public static tianfu guanliantianfu;
 
     MediaPlayer M;
