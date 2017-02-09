@@ -1,0 +1,508 @@
+<root>
+  <switches Name="预先侦察">    <!--名称-->
+    <Info1>预先侦察属于战略性侦察，目的是获取敌方电子设备和系统的全面情报。为制定电子战计划，发展电子战装备提供依据，并为现场侦察提供情报。</Info1>    <!--说明-->
+    <Info2>1</Info2>    <!--消耗点数-->
+    <Info3>0</Info3>    <!--威力-->
+    <Info4>无</Info4>    <!--克制关系-->
+    <Info5>总得分*（1.1）</Info5>    <!--特殊效果-->
+    <Case>A;1.1</Case>    <!--实际影响游戏的参数-->
+    <Step>1</Step>    <!--三个步骤-->
+    <LocateNumber>3</LocateNumber>    <!--在游戏内天赋位置-->
+    <CombainNum></CombainNum>    <!--主从关系-->
+    <AorD>A</AorD>    <!--进攻(A)或防守(D)-->
+  </switches>
+  <switches Name="现场侦察">    <!--名称-->
+    <Info1>现场侦查属于战术性侦察，是在战斗前夕及过程中，对战场电磁环境进行实时侦察，分析和识别。主要目的是引导干扰机实施干扰，为摧毁敌方电磁辐射源提供目标位置信息。</Info1>    <!--说明-->
+    <Info2>4</Info2>    <!--消耗点数-->
+    <Info3>0</Info3>    <!--威力-->
+    <Info4>无</Info4>    <!--克制关系-->
+    <Info5>总得分*（1.2）</Info5>    <!--特殊效果-->
+    <Case>A;1.2</Case>    <!--实际影响游戏的参数-->
+    <Step>1</Step>    <!--三个步骤-->
+    <LocateNumber>2</LocateNumber>    <!--在游戏内天赋位置-->
+    <CombainNum>预先侦察</CombainNum>    <!--主从关系-->
+    <AorD>A</AorD>    <!--进攻(A)或防守(D)-->
+  </switches>
+  <switches Name="地面监听站">
+    <Info1>监听站侦收的情报信息可与电子侦察卫星侦收的情报信息进行核对，从而确定对方军事电子装备与武器系统的类型、数量、性能和技术参数及军事部署与调动等重要军事情报。</Info1>
+    <Info2>1</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>总得分*（1.05）</Info5>
+    <Case>A;1.05</Case>
+    <Step>1</Step>
+    <LocateNumber>7</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="电子侦察卫星">
+    <Info1>电子侦察卫星的侦察覆盖面积大、范围广、能迅速完成侦察任务，并可连续和定期监视某一个地区。卫星在地球上空飞行，有超越国界和领空的自由，不受防空武器攻击威胁。</Info1>
+    <Info2>4</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>总得分*（1.3）</Info5>
+    <Case>A;1.3</Case>
+    <Step>1</Step>
+    <LocateNumber>12</LocateNumber>
+    <CombainNum>地面监听站</CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="装甲侦察车">
+    <Info1>装甲侦察车可执行同敌方接触并搜集敌方实力及行动情报的任务。车载雷达和其它各种地面传感器可提供关于敌军转移的信息，为火炮和火箭系统定位打击目标。</Info1>
+    <Info2>1</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>总得分*（1.05）</Info5>
+    <Case>A;1.05</Case>
+    <Step>1</Step>
+    <LocateNumber>13</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="有人驾驶侦察飞机">
+    <Info1>有人驾驶侦察飞机是战略侦察机，载有复杂的航摄仪和电子侦察设备，能从高空深入对方国土，对军事和工业中心、核设施、导弹发射基地等战略目标实施侦察。</Info1>
+    <Info2>3</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>总得分*（1.05）</Info5>
+    <Case>A;1.05</Case>
+    <Step>1</Step>
+    <LocateNumber>6</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="无人驾驶侦察飞机">
+    <Info1>无人驾驶侦察飞机是战术侦察机。制造成本低，一般只有有人驾驶飞机成本的1/9。有不需要驾驶员，不会有人员伤亡，体积小、生存能力强等优点。</Info1>
+    <Info2>1</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>总得分*（1.3）</Info5>
+    <Case>A;1.3</Case>
+    <Step>1</Step>
+    <LocateNumber>1</LocateNumber>
+    <CombainNum>有人驾驶侦察飞机</CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="投放式侦察设备">
+    <Info1>能投放到敌后方军事要地进行侦察。并能及时侦收、记录、转发敌方军事电子装备和军事行动等重要情报信息。投掷式侦察设备可伪装成花草、树木、大石头等物体。</Info1>
+    <Info2>1</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>总得分*（1.05）</Info5>
+    <Case>A;1.05</Case>
+    <Step>1</Step>
+    <LocateNumber>11</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="雷达告警系统">
+    <Info1>雷达告警系统大量装备在各类兵器上用于告警自卫。主要功能是发现敌方力量的威胁，并提供关于威胁的主要信息，以便采取相应的行动，避免造成严重后果。</Info1>
+    <Info2>2</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>对方总得分*0.8</Info5>
+    <Case>A;0.8</Case>
+    <Step>1</Step>
+    <LocateNumber>4</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="电磁静默">
+    <Info1>关停一切对外发射的电磁信号设备，使对方无法侦听己方的通讯内容和使用无线电测得己方存在。只接受信号而不发出信号。可有效避免无线电监测设备。</Info1>
+    <Info2>1</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>对方总得分*0.9</Info5>
+    <Case>A;0.9</Case>
+    <Step>1</Step>
+    <LocateNumber>14</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="实体伪装">
+    <Info1>通过塑料装备模型，在外形上欺骗敌方侦察机。可以阻碍敌人电子侦察与监视装备获取情报信息，隐藏自己本身反射或者发射的电磁波。</Info1>
+    <Info2>1</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>对方总得分*0.9</Info5>
+    <Case>A;0.9</Case>
+    <Step>1</Step>
+    <LocateNumber>10</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="电子伪装">
+    <Info1>电子伪装即给塑料装备模型加装热源，以欺骗机载雷达和制导红外导弹，从而增加敌军空袭轰炸成本。</Info1>
+    <Info2>3</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>对方总得分*0.85</Info5>
+    <Case>A;0.85</Case>
+    <Step>1</Step>
+    <LocateNumber>5</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="瞄准式干扰">
+    <Info1>电子干扰瞄准式干扰，是针对敌方电子设备的某一工作频率而进行的频带较窄的压制性干扰。电子干扰功率集中，干扰效率高，干扰距离远，但需要有精确的频率引导。</Info1>
+    <Info2>1</Info2>
+    <Info3>1500</Info3>
+    <Info4>无</Info4>
+    <Info5>无</Info5>
+    <Case>D;1500</Case>
+    <Step>2</Step>
+    <LocateNumber>16</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="阻塞式干扰">
+    <Info1>阻塞式干扰能同时干扰工作在同一频段内不同工作频率上的多部电子设备。不需要精确的频率引导，需要比较大的干扰功率。由于干扰信号功率分散，其干扰的作用距离短。</Info1>
+    <Info2>2</Info2>
+    <Info3>1500</Info3>
+    <Info4>无</Info4>
+    <Info5>无</Info5>
+    <Case>D;1500</Case>
+    <Step>2</Step>
+    <LocateNumber>20</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="欺骗式干扰">
+    <Info1>使用电子干扰飞机，发射出与雷达频率接近并经过虚假信息调制的干扰脉冲，使敌方电子装备或操作人员对所接收的信号真假难辨。</Info1>
+    <Info2>4</Info2>
+    <Info3>800</Info3>
+    <Info4>无</Info4>
+    <Info5>摧毁得分*（1.5）</Info5>
+    <Case>DA;1.5</Case>
+    <Step>2</Step>
+    <LocateNumber>24</LocateNumber>
+    <CombainNum>现场侦察</CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="箔条">
+    <Info1>干扰箔条本身并不产生电磁波，而是通过反射电磁波来扰乱敌方雷达正常工作。在箔条干扰下，受干扰雷达会显示一条长长的亮带。</Info1>
+    <Info2>1</Info2>
+    <Info3>100</Info3>
+    <Info4>无</Info4>
+    <Info5>摧毁得分*（1.1）</Info5>
+    <Case>DA;1.1;D;100</Case>
+    <Step>2</Step>
+    <LocateNumber>15</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="进攻假目标">
+    <Info1>假目标是一种用作无源干扰的诱饵，旨在欺骗雷达工作。在战斗中，小型飞行假目标与攻击机一起进攻，结果使敌方雷达防御系统注意力分散，或因目标过多而无法判断。</Info1>
+    <Info2>3</Info2>
+    <Info3>400</Info3>
+    <Info4>无</Info4>
+    <Info5>摧毁得分*（1.2）</Info5>
+    <Case>DA;1.2;D;400</Case>
+    <Step>2</Step>
+    <LocateNumber>17</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="复网抗扰">
+    <Info1>复网抗扰是用两套以上的无线电台或通信波道来保障与同一联络对象的通信，保证无线电通信在受敌方干扰情况下也能正常工作。</Info1>
+    <Info2>1</Info2>
+    <Info3>0</Info3>
+    <Info4>瞄准式干扰</Info4>
+    <Info5>瞄准式干扰得分*0.3</Info5>
+    <Case>Z;0.3</Case>
+    <Step>2</Step>
+    <LocateNumber>18</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="变频抗扰">
+    <Info1>变频抗扰是雷达工作指以极短的时间间隔变换频率，或由一种频率的脉冲立即变为另一种频率的脉冲。只要超过干扰信号频率改变的速度，就可及时将干扰甩掉。</Info1>
+    <Info2>2</Info2>
+    <Info3>0</Info3>
+    <Info4>瞄准式干扰</Info4>
+    <Info5>瞄准式干扰不得分</Info5>
+    <Case>Z;0</Case>
+    <Step>2</Step>
+    <LocateNumber>23</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="调零抗扰">
+    <Info1>根据敌方干扰信号的特点，将定向天线对准干扰台方向调零，以降低干扰功率，形成“心 形”天线辐射图，可提供可靠的抗干扰保密通信。</Info1>
+    <Info2>2</Info2>
+    <Info3>0</Info3>
+    <Info4>阻塞式干扰</Info4>
+    <Info5>阻塞式干扰得分*0.3</Info5>
+    <Case>Z;0.3</Case>
+    <Step>2</Step>
+    <LocateNumber>26</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="“双主”抗扰">
+    <Info1>在通信网中临时设立两个主电台，一个是主台，另一个作为佯动台。在遇到敌方干扰又无法摆脱时，可分散敌方的电子对抗力量，牵制敌方的通信干扰。</Info1>
+    <Info2>2</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>敌方干扰得分*0.7</Info5>
+    <Case>DB;0.7</Case>
+    <Step>2</Step>
+    <LocateNumber>25</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="电磁屏蔽抗扰">
+    <Info1>使用金属薄板和金属套管，屏蔽电子通信设备和外部线缆。好比给电子系统穿上了一套防干扰服装，可将敌方干扰的影响减低到最小限度。</Info1>
+    <Info2>3</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>敌方干扰得分*0.5</Info5>
+    <Case>DB;0.5</Case>
+    <Step>2</Step>
+    <LocateNumber>19</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="反辐射导弹">
+    <Info1>反辐射导弹利用雷达的电磁辐射对雷达进行探测，跟踪，从而直接摧毁雷达。如被攻击的雷达关机，导弹的记忆装置能继续控制导弹飞向目标。</Info1>
+    <Info2>3</Info2>
+    <Info3>1200</Info3>
+    <Info4>无</Info4>
+    <Info5>无</Info5>
+    <Case>DM;1200</Case>
+    <Step>3</Step>
+    <LocateNumber>29</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="反辐射无人飞机">
+    <Info1>反辐射无人机可从空中鸟瞰敌地域内雷达设施，搜索并识别其电磁辐射信号，按优先等级对敌方雷达实施攻击和摧毁。无目标时可在空中巡航，待敌方雷达工作时展开攻击。</Info1>
+    <Info2>4</Info2>
+    <Info3>1900</Info3>
+    <Info4>无</Info4>
+    <Info5>无</Info5>
+    <Case>DM;1900</Case>
+    <Step>3</Step>
+    <LocateNumber>28</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="红外制导导弹">
+    <Info1>红外制导导弹制导精度高，不受无线电干扰的影响，可昼夜作战，攻击隐蔽性好。有可能被曳光弹、红外干扰弹等干扰源诱惑、偏离、丢失目标。</Info1>
+    <Info2>1</Info2>
+    <Info3>300</Info3>
+    <Info4>无</Info4>
+    <Info5>无</Info5>
+    <Case>DM;300</Case>
+    <Step>3</Step>
+    <LocateNumber>33</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="隐形导弹">
+    <Info1>可一次性的摧毁敌方的指挥系统。隐形导弹是兼隐形、高速、超远程和智能化综合一体的导弹。其效果比用隐形飞机搭载精确制导武器更好。</Info1>
+    <Info2>3</Info2>
+    <Info3>1200</Info3>
+    <Info4>无</Info4>
+    <Info5>无</Info5>
+    <Case>DM;1200</Case>
+    <Step>3</Step>
+    <LocateNumber>27</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="电磁脉冲高能武器">
+    <Info1>电磁脉冲高能武器释放高能量电磁波，使敌方武器、通讯、预警、雷达系统设备中的电子元器件失效或烧毁，甚至能够提前引爆导弹战斗部或炸药。</Info1>
+    <Info2>5</Info2>
+    <Info3>2500</Info3>
+    <Info4>无</Info4>
+    <Info5>无</Info5>
+    <Case>DM;2500</Case>
+    <Step>3</Step>
+    <LocateNumber>32</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+    <Length>125</Length>
+  </switches>
+  <switches Name="电子计算机病毒">
+    <Info1>计算机病毒包括“芯片病毒”“蠕虫病毒”“逻辑炸弹”等。既可实施网络攻击，瘫痪敌方的指挥、控制系统，又可实施单系统攻击，破坏敌方作战平台。</Info1>
+    <Info2>2</Info2>
+    <Info3>800</Info3>
+    <Info4>无</Info4>
+    <Info5>我方摧毁得分*1.05</Info5>
+    <Case>DC;1.05;DM;800</Case>
+    <Step>3</Step>
+    <LocateNumber>38</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="微波定向能武器">
+    <Info1>超高功率微波经过天线聚集成一束很窄的电波，像一把锋利的尖刀“刺”向敌方电子设备，在电子元件及线路中产生致命的电压电流，击穿或烧毁电路系统中的敏感元件。</Info1>
+    <Info2>5</Info2>
+    <Info3>1000</Info3>
+    <Info4>无</Info4>
+    <Info5>我方摧毁得分*1.5</Info5>
+    <Case>DC;1.5;DM;1000</Case>
+    <Step>3</Step>
+    <LocateNumber>39</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>A</AorD>
+  </switches>
+  <switches Name="防守假目标">
+    <Info1>防守假目标由发射机和天线组成，只发射雷达波但不接受。容易导致反辐射导弹误判。假目标若配置多部天线，则本身只需切换不同天线就可使导弹失去目标。</Info1>
+    <Info2>1</Info2>
+    <Info3>0</Info3>
+    <Info4>反辐射导弹</Info4>
+    <Info5>反辐射导弹得分*0.3</Info5>
+    <Case>Z;0.3</Case>
+    <Step>3</Step>
+    <LocateNumber>30</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="战术强激光武器">
+    <Info1>战术强激光武器由激光器、雷达、激光束定向器、火控系统等组成，可舰载或在地面机动使用，用于应对10公里内的战术飞行目标。一旦发现目标，几秒钟内就可将其击毁。</Info1>
+    <Info2>2</Info2>
+    <Info3>0</Info3>
+    <Info4>反辐射无人机</Info4>
+    <Info5>反辐射无人机得分*0.3</Info5>
+    <Case>Z;0.3</Case>
+    <Step>3</Step>
+    <LocateNumber>42</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="红外干扰弹">
+    <Info1>当有导弹来袭时，可将红外干扰弹从飞机或舰船上投射到空中。这种弹药通过辐射强大的红外能量，制造与所保护目标相同的红外辐射源，诱骗敌方红外制导导弹。</Info1>
+    <Info2>1</Info2>
+    <Info3>0</Info3>
+    <Info4>红外制导导弹</Info4>
+    <Info5>红外制导导弹得分*0.3</Info5>
+    <Case>Z;0.3</Case>
+    <Step>3</Step>
+    <LocateNumber>36</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="双基地雷达">
+    <Info1>隐形导弹可抑制后向散射波，但在其它方向雷达波仍有较强折射能量。双基地雷达系统将发射机和接收机分置在不同区域，使接收机通过隐形导弹的偏转雷达波监测锁定目标。</Info1>
+    <Info2>2</Info2>
+    <Info3>0</Info3>
+    <Info4>隐形导弹</Info4>
+    <Info5>隐形导弹得分*0.3</Info5>
+    <Case>Z;0.3</Case>
+    <Step>3</Step>
+    <LocateNumber>41</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="建立掘壕入洞通信">
+    <Info1>对各种通信设施构筑掩体，将大、中型通信枢纽建在地下，建立地下通信并构筑地下工事， 充分利用地形、地物，避开敌方对己方电子系统的直接辐射干扰。</Info1>
+    <Info2>3</Info2>
+    <Info3>0</Info3>
+    <Info4>电磁脉冲高能武器</Info4>
+    <Info5>电磁脉冲高能武器得分*0.3</Info5>
+    <Case>Z;0.3</Case>
+    <Step>3</Step>
+    <LocateNumber>37</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+    <Length>150</Length>
+  </switches>
+  <switches Name="电子计算机防病毒">
+    <Info1>需全方位建立计算机防病毒措施，包括建立独立的集成电路生产工业，改造引进的计算机系统，建立安全入口，研究病毒检测方法，提高抗病毒能力，加固电子信息系统等。</Info1>
+    <Info2>3</Info2>
+    <Info3>0</Info3>
+    <Info4>电子计算机病毒</Info4>
+    <Info5>敌方计算机病毒不得分</Info5>
+    <Case>Z;0</Case>
+    <Step>3</Step>
+    <LocateNumber>40</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="GPS干扰">
+    <Info1>GPS干扰是使用GPS信号转发器收到敌方GPS信号后，精确复制并放大后转发出去，使敌方GPS接收机优先收到该信号，导致错误导航定位。</Info1>
+    <Info2>1</Info2>
+    <Info3>0</Info3>
+    <Info4>无</Info4>
+    <Info5>敌方摧毁得分*0.6</Info5>
+    <Case>DC;0.6</Case>
+    <Step>3</Step>
+    <LocateNumber>31</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>D</AorD>
+  </switches>
+  <switches Name="电子侦察">
+    <Info1>请选择天赋</Info1>
+    <Info2>-</Info2>
+    <Info3>-</Info3>
+    <Info4>-</Info4>
+    <Info5>-</Info5>
+    <Case>参数24</Case>
+    <Step>4</Step>
+    <LocateNumber>8</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>CA</AorD>
+  </switches>
+  <switches Name="电子反侦察">
+    <Info1>请选择天赋</Info1>
+    <Info2>-</Info2>
+    <Info3>-</Info3>
+    <Info4>-</Info4>
+    <Info5>-</Info5>
+    <Case>参数24</Case>
+    <Step>4</Step>
+    <LocateNumber>9</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>CD</AorD>
+  </switches>
+  <switches Name="电子干扰">
+    <Info1>请选择天赋</Info1>
+    <Info2>-</Info2>
+    <Info3>-</Info3>
+    <Info4>-</Info4>
+    <Info5>-</Info5>
+    <Case>参数24</Case>
+    <Step>4</Step>
+    <LocateNumber>21</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>CA</AorD>
+  </switches>
+  <switches Name="电子反干扰">
+    <Info1>请选择天赋</Info1>
+    <Info2>-</Info2>
+    <Info3>-</Info3>
+    <Info4>-</Info4>
+    <Info5>-</Info5>
+    <Case>参数24</Case>
+    <Step>4</Step>
+    <LocateNumber>22</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>CD</AorD>
+  </switches>
+  <switches Name="摧毁">
+    <Info1>请选择天赋</Info1>
+    <Info2>-</Info2>
+    <Info3>-</Info3>
+    <Info4>-</Info4>
+    <Info5>-</Info5>
+    <Case>参数24</Case>
+    <Step>4</Step>
+    <LocateNumber>34</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>CA</AorD>
+  </switches>
+  <switches Name="反摧毁">
+    <Info1>请选择天赋</Info1>
+    <Info2>-</Info2>
+    <Info3>-</Info3>
+    <Info4>-</Info4>
+    <Info5>-</Info5>
+    <Case>参数24</Case>
+    <Step>4</Step>
+    <LocateNumber>35</LocateNumber>
+    <CombainNum></CombainNum>
+    <AorD>CD</AorD>
+  </switches>
+</root>
