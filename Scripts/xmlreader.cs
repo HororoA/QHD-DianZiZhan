@@ -5,7 +5,6 @@ using System.IO;
 using System.Collections.Generic;
 using System;
 
-
 public class xmlreader : MonoBehaviour
 {
     //天赋类
@@ -16,8 +15,6 @@ public class xmlreader : MonoBehaviour
     public static Dictionary<string, int> CoNuDict = new Dictionary<string, int>();
     public static Dictionary<string, tianfu> Combian = new Dictionary<string, tianfu>();
     public static Dictionary<tianfu, string> KeZhi = new Dictionary<tianfu, string>();
-
-
 
     public Sprite S1;
     public static Sprite S2;
@@ -127,6 +124,21 @@ public class xmlreader : MonoBehaviour
             tianfus[i].Number = i;
             LoNuDict.Add(tianfus[i].Locate, i);
             CoNuDict.Add(tianfus[i].Name, i);
+            if (tianfus[i].AorD == "A")
+            {
+                if (tianfus[i].step != 1)
+                {
+                    tianfus[i].NewDownStr = StringS(tianfus[i].Case)[1];
+                }
+                else
+                {
+                    tianfus[i].NewDownStr = fenshuzhuanhua(StringS(tianfus[i].Case)[1]);
+                }
+            }
+            else
+            {
+                tianfus[i].NewDownStr = "反制";
+            }
             if (tianfus[i].CombainNum != "") Combian.Add(tianfus[i].CombainNum, tianfus[i]);
             if (tianfus[i].Info4 != "") KeZhi.Add(tianfus[i], tianfus[i].Info4);
             i++;
@@ -142,7 +154,9 @@ public class xmlreader : MonoBehaviour
         {
             try
             {
-                GameObject.Find((tianfus[i].Locate)).GetComponentInChildren<UnityEngine.UI.Text>().text = tianfus[i].Name;
+                GameObject.Find((tianfus[i].Locate)).GetComponentsInChildren<UnityEngine.UI.Text>()[0].text = tianfus[i].Name;
+                GameObject.Find((tianfus[i].Locate)).GetComponentsInChildren<UnityEngine.UI.Text>()[2].text = tianfus[i].Info2;
+                GameObject.Find((tianfus[i].Locate)).GetComponentsInChildren<UnityEngine.UI.Text>()[1].text = tianfus[i].NewDownStr;
             }
             catch (Exception e)
             {
@@ -205,7 +219,6 @@ public class xmlreader : MonoBehaviour
 
     public static void jiazhuangLoadingxulie(tianfu T, int i)
     {
-        //Debug.Log(T.Name + "," + T.Slength + "," + T.Number);
         for (int j = 0; j < T.Slength; j++)
         {
             if (i == 1)
@@ -219,4 +232,17 @@ public class xmlreader : MonoBehaviour
         }
     }
 
+    string[] StringS(string s)
+    {
+        string[] str = s.Split(';');
+        return str;
+    }
+
+    string fenshuzhuanhua(string s)
+    {
+        string str = string.Empty;
+        double d = (double.Parse(s) - 1) * 100;
+        str = "+" + d.ToString() + "%";
+        return str;
+    }
 }

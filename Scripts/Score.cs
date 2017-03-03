@@ -43,7 +43,8 @@ public class Score
 
     public void Step1Math(float S)
     {
-        Step1 = Step1 * S;
+        //Step1 = Step1 * S;
+        Step1 = Step1 + S;
     }
 
     public void ClearScore()

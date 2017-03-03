@@ -45,7 +45,7 @@ public class StepThreeCtr : MonoBehaviour
     public static List<tianfu> PlayerStep1Defend = new List<tianfu>();
     public static List<tianfu> PlayerStep2Defend = new List<tianfu>();
     public static List<tianfu> PlayerStep3Defend = new List<tianfu>();
-    
+
     public static List<tianfu> PCStep1Attack = new List<tianfu>();
     public static List<tianfu> PCStep2Attack = new List<tianfu>();
     public static List<tianfu> PCStep3Attack = new List<tianfu>();
@@ -107,6 +107,16 @@ public class StepThreeCtr : MonoBehaviour
     List<int> PLS = new List<int>();
     int PcPlSNum = 100;
 
+    public GameObject BKBG0;
+    public GameObject BKBG;
+    public Sprite[] BKB;
+    public GameObject[] BKBStepS;
+    public Text[] BKBTextS;
+
+    int BKBStep;
+    bool Getit = false;
+    int PLLength = 0;
+    int PClength = 0;
 
     void Awake()
     {
@@ -206,9 +216,48 @@ public class StepThreeCtr : MonoBehaviour
         udp = String.Empty;
     }
 
+    void udpstrjiexi2()
+    {
+        PcPlSNum = 100;
+        string[] str = udp.Split(';');
+        //Debug.Log("Length," + str.Length);
+        for (int number = 1; number < str.Length - 1; number++)
+        {
+            //Debug.Log(number + "," + str[number]);
+            if (str[number] != "PC" && number < PcPlSNum)
+            {
+                PLS.Add(int.Parse(str[number]));
+                xmlreader.tianfus[int.Parse(str[number])].Touched = true;
+            }
+            if (str[number] == "PC")
+            {
+                PcPlSNum = number;
+            }
+            if (number > PcPlSNum)
+            {
+                //Debug.Log(str[number]);
+                PCS.Add(int.Parse(str[number]));
+                //Debug.Log(PCS[number]);
+            }
+        }
+
+        Getit = true;
+        switch (str[0])
+        {
+            case "Step2":
+                BKBStep = 1;
+                break;
+            case "Step3":
+                BKBStep = 2;
+                break;
+        }
+        udp = String.Empty;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(step + "," + isplaying);
         if (HoleCtrl.IsStep2)
         {
             Games[0].SetActive(true);
@@ -216,7 +265,11 @@ public class StepThreeCtr : MonoBehaviour
             Games[2].SetActive(false);
 
             //GameObject.Find("ceshi").GetComponent<Text>().text = udp;
-            if (udp != string.Empty && udp != "hello")
+            if (udp == "Step1")
+            {
+                BKBG0.SetActive(true);
+            }
+            if (udp != string.Empty && udp != "hello" && udp != "Step1")
             {
                 udpstrjiexi();
             }
@@ -224,6 +277,12 @@ public class StepThreeCtr : MonoBehaviour
         if (HoleCtrl.IsStep3)
         //if (havereciveudp)
         {
+            if (udp != string.Empty && udp != "hello" && udp != "Step1")
+            {
+                //Debug.Log(123);
+                udpstrjiexi2();
+            }
+
             Timeer += Time.deltaTime * 1;
 
             Radar.GetComponent<RectTransform>().Rotate(0, 0, -200 * Time.deltaTime, Space.Self);
@@ -492,7 +551,14 @@ public class StepThreeCtr : MonoBehaviour
         }
         else if (huihefen > 0)
         {
-            FenshuChange.GetComponent<Text>().text = "X " + huihefen;
+            if (T.step != 1)
+            {
+                FenshuChange.GetComponent<Text>().text = "X " + huihefen;
+            }
+            else
+            {
+                FenshuChange.GetComponent<Text>().text = "+ " + huihefen * 100 + "%";
+            }
         }
         else
         {
@@ -595,7 +661,7 @@ public class StepThreeCtr : MonoBehaviour
                 //Debug.Log("1," + isplaying);
                 if (isplaying == 2)
                 {
-                    
+
                     isplaying = 1;
                     if (guanliantianfu == null)
                     {
@@ -638,7 +704,7 @@ public class StepThreeCtr : MonoBehaviour
 
     void infoimageguan(int i)
     {
-        
+
     }
 
     void infotextkai(int i)
@@ -771,7 +837,7 @@ public class StepThreeCtr : MonoBehaviour
     void Pcloading2()
     {
         //Debug.Log(PCS.Count);
-        for (int i = 0; i < PCS.Count; i++)
+        for (int i = PClength; i < PCS.Count; i++)
         {
             //xmlreader.tianfus[PCS[i]].Touched = true;
             tianfu T = xmlreader.tianfus[PCS[i]];
@@ -807,6 +873,7 @@ public class StepThreeCtr : MonoBehaviour
                 }
             }
         }
+        PClength = PCS.Count;
     }
 
     void Pcloading()
@@ -857,49 +924,41 @@ public class StepThreeCtr : MonoBehaviour
 
     void SelectedTianfuLoading()
     {
-        for (int i = 0; i < xmlreader.tianfus.Length; i++)
+        for (int i = PLLength; i < PLS.Count; i++)
         {
-            if (xmlreader.tianfus[i].Touched)
+            tianfu T = xmlreader.tianfus[PLS[i]];
+            if (T.AorD == "A")
             {
-                if (xmlreader.tianfus[i].AorD == "A")
+                switch (T.step)
                 {
-                    switch (xmlreader.tianfus[i].step)
-                    {
-                        case 1:
-                            PlayerStep1Attack.Add(xmlreader.tianfus[i]);
-                            break;
-                        case 2:
-                            PlayerStep2Attack.Add(xmlreader.tianfus[i]);
-                            break;
-                        case 3:
-                            PlayerStep3Attack.Add(xmlreader.tianfus[i]);
-                            break;
-                    }
+                    case 1:
+                        PlayerStep1Attack.Add(T);
+                        break;
+                    case 2:
+                        PlayerStep2Attack.Add(T);
+                        break;
+                    case 3:
+                        PlayerStep3Attack.Add(T);
+                        break;
                 }
-                else
+            }
+            else
+            {
+                switch (xmlreader.tianfus[i].step)
                 {
-                    switch (xmlreader.tianfus[i].step)
-                    {
-                        case 1:
-                            PlayerStep1Defend.Add(xmlreader.tianfus[i]);
-                            break;
-                        case 2:
-                            PlayerStep2Defend.Add(xmlreader.tianfus[i]);
-                            break;
-                        case 3:
-                            PlayerStep3Defend.Add(xmlreader.tianfus[i]);
-                            break;
-                    }
+                    case 1:
+                        PlayerStep1Defend.Add(T);
+                        break;
+                    case 2:
+                        PlayerStep2Defend.Add(T);
+                        break;
+                    case 3:
+                        PlayerStep3Defend.Add(T);
+                        break;
                 }
-                //xmlreader.tianfus[i].Touched = false;
             }
         }
-        //xulieloadinghelper(PlayerStep1Attack, 1);
-        //xulieloadinghelper(PlayerStep2Attack, 1);
-        //xulieloadinghelper(PlayerStep3Attack, 1);
-        //xulieloadinghelper(PlayerStep1Defend, 1);
-        //xulieloadinghelper(PlayerStep2Defend, 1);
-        //xulieloadinghelper(PlayerStep2Defend, 1);
+        PLLength = PLS.Count;
         step = 1;
 
     }
@@ -930,7 +989,7 @@ public class StepThreeCtr : MonoBehaviour
         //if (Timeer > 2 && !isplaying)
         if (isplaying == 0)
         {
-            if (num[0] < (PlayerStep1Attack.Count + PCStep1Defend.Count))
+            if (num[0] <= (PlayerStep1Attack.Count + PCStep1Defend.Count))
             {
                 if (Anihelp)
                 {
@@ -942,7 +1001,7 @@ public class StepThreeCtr : MonoBehaviour
                 }
                 else animehelper(1, "侦查阶段，由我方先攻");
             }
-            else if (num[1] < (PlayerStep1Defend.Count + PCStep1Attack.Count))
+            else if (num[1] <= (PlayerStep1Defend.Count + PCStep1Attack.Count))
             {
                 if (Anihelp)
                 {
@@ -954,7 +1013,7 @@ public class StepThreeCtr : MonoBehaviour
                 }
                 else animehelper(11, "攻防转换");
             }
-            else if (num[2] < (PlayerStep2Attack.Count + PCStep2Defend.Count))
+            else if (num[2] <= (PlayerStep2Attack.Count + PCStep2Defend.Count))
             {
                 if (Anihelp)
                 {
@@ -966,7 +1025,7 @@ public class StepThreeCtr : MonoBehaviour
                 }
                 else animehelper(2, "干扰阶段开始");
             }
-            else if (num[3] < (PlayerStep2Defend.Count + PCStep2Attack.Count))
+            else if (num[3] <= (PlayerStep2Defend.Count + PCStep2Attack.Count))
             {
                 if (Anihelp)
                 {
@@ -979,14 +1038,10 @@ public class StepThreeCtr : MonoBehaviour
                 }
                 else
                 {
-                    //for (int ii = 0; ii < PlayerStep2Defend.Count; ii++)
-                    //{
-                    //    Debug.Log(PlayerStep2Defend[ii].played + "," + PlayerStep2Defend[ii].Name);
-                    //}
                     animehelper(22, "攻防转换");
                 }
             }
-            else if (num[4] < (PlayerStep3Attack.Count + PCStep3Defend.Count))
+            else if (num[4] <= (PlayerStep3Attack.Count + PCStep3Defend.Count))
             {
                 if (Anihelp)
                 {
@@ -998,7 +1053,7 @@ public class StepThreeCtr : MonoBehaviour
                 }
                 else animehelper(3, "摧毁阶段开始");
             }
-            else if (num[5] < (PlayerStep3Defend.Count + PCStep3Attack.Count))
+            else if (num[5] <= (PlayerStep3Defend.Count + PCStep3Attack.Count))
             {
                 if (Anihelp)
                 {
@@ -1102,6 +1157,7 @@ public class StepThreeCtr : MonoBehaviour
                                         PC[n].GetComponent<Image>().sprite = S[1];
                                         T[1].text = _PC[j].Info5;
                                         guanliantianfu = _PC[j];
+                                        guanliantianfu.played = true;
                                         if (XB) PLlight = n;
                                         else PClight = n;
                                         retint = j;
@@ -1119,6 +1175,7 @@ public class StepThreeCtr : MonoBehaviour
                                         Player[n].GetComponent<Image>().sprite = S[1];
                                         T[1].text = _PC[j].Info5;
                                         guanliantianfu = _PC[j];
+                                        guanliantianfu.played = true;
                                         if (XB) PLlight = n;
                                         else PClight = n;
                                         retint = j;
@@ -1147,7 +1204,7 @@ public class StepThreeCtr : MonoBehaviour
                 usingtimer = Time.time;
             }
         }
-        else
+        else if (num[i] < _PC.Count + _Player.Count)
         {
             if (!_PC[num[i] - _Player.Count].played)
             {
@@ -1183,6 +1240,7 @@ public class StepThreeCtr : MonoBehaviour
                                     Player[n].GetComponent<Image>().sprite = S[1];
                                     T[1].text = _Player[j].Info5;
                                     guanliantianfu = _Player[j];
+                                    guanliantianfu.played = true;
                                     if (XB) PLlight = n;
                                     else PClight = n;
                                     retint = j;
@@ -1218,19 +1276,29 @@ public class StepThreeCtr : MonoBehaviour
             {
 
             }
-            else
+            else if (num[i] < _Player.Count + _PC.Count)
             {
+                //Debug.Log(num[i] + "," + _PC[num[i] - _Player.Count].Name);
                 while (_PC[num[i] - _Player.Count].played)
                 {
                     num[i]++;
+                    if (num[i] >= _Player.Count + _PC.Count)
+                    {
+                        break;
+                    }
                 }
             }
         }
-        
-        if (num[i] >= (_PC.Count + _Player.Count)) Anihelp = false;
+        //Debug.Log(num[i]);
         Timeer = 0;
         step = _step;
         isplaying = 3;
+
+        if (num[i] > (_PC.Count + _Player.Count))
+        {
+            isplaying = 0;
+            Anihelp = false;
+        }
         return retint;
     }
 
@@ -1239,7 +1307,37 @@ public class StepThreeCtr : MonoBehaviour
         TimerCtr = true;
         Tiptext.SetActive(true);
         Tiptext.GetComponent<Text>().text = fenshu;
-        Invoke("Invoker", 3f);
+        //Debug.Log(_step);
+        if (_step > 10 || _step == 1)
+        {
+            Invoke("Invoker", 3f);
+        }
+        else if (Getit)
+        {
+            switch (BKBStep)
+            {
+                case 1:
+                    SelectedTianfuLoading();
+                    Pcloading2();
+                    TianfuObjLoading(PlayerStep2Attack, Player);
+                    TianfuObjLoading(PCStep2Defend, PC);
+                    Getit = false;
+                    Invoke("Invoker", 3f);
+                    break;
+                case 2:
+                    SelectedTianfuLoading();
+                    Pcloading2();
+                    TianfuObjLoading(PlayerStep3Attack, Player);
+                    TianfuObjLoading(PCStep3Defend, PC);
+                    Getit = false;
+                    Invoke("Invoker", 3f);
+                    break;
+                case 3:
+                    Getit = false;
+                    Invoke("Invoker", 3f);
+                    break;
+            }
+        }
         Timeer = 0;
         step = _step;
     }
@@ -1277,8 +1375,8 @@ public class StepThreeCtr : MonoBehaviour
         switch (T.step)
         {
             case 1:
-                S.Step1Math(float.Parse(StringS(T.Case)[1]));
-                huihefen = float.Parse(StringS(T.Case)[1]);
+                S.Step1Math(float.Parse(fenshuzhuanhua(StringS(T.Case)[1])));
+                huihefen = float.Parse(fenshuzhuanhua(StringS(T.Case)[1]));
                 break;
             case 2:
                 switch (StringS(T.Case)[0])
@@ -1326,6 +1424,14 @@ public class StepThreeCtr : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    string fenshuzhuanhua(string s)
+    {
+        string str = string.Empty;
+        double d = (double.Parse(s) - 1) ;
+        str = d.ToString();
+        return str;
     }
 
     void Socoring(Score S, tianfu T, float f)

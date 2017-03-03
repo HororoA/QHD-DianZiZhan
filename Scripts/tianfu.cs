@@ -22,4 +22,5 @@ public class tianfu
     public List<Sprite> S = new List<Sprite>();     //序列帧（左至右）
     public List<Sprite> S2= new List<Sprite>();     //序列帧（右至左）
     public int Slength;                             //序列帧长度
+    public string NewDownStr;                       //下表
 }

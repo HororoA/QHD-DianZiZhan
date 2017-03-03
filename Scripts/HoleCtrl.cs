@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class HoleCtrl : MonoBehaviour
 {
@@ -35,6 +36,13 @@ public class HoleCtrl : MonoBehaviour
 
     public Text[] Texts;
 
+    public Image heiping;
+    public GameObject heipingG;
+    public GameObject[] StepT;
+    public GameObject[] StepB;
+    public Sprite[] NewSprites;
+    public static int stepttt = 1;
+
     public static string sendstr = string.Empty;
     public static string sendstr2 = string.Empty;
     //bool BeginState = false;
@@ -49,15 +57,18 @@ public class HoleCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(IsStep2 + "," + IsStep3);
         if (IsStep1)
         {
             Steps[3].SetActive(false);
             Steps[0].SetActive(true);
+            points = 20;
         }
         if (IsStep2)
         {
             Steps[0].SetActive(false);
             Steps[1].SetActive(true);
+            Steps[2].SetActive(false);
             PointsExpoler();
             if (!isloaded)
             {
@@ -69,6 +80,19 @@ public class HoleCtrl : MonoBehaviour
                 }
                 PointsExpoler();
                 TianfuSpriteLoading(true);
+                for (int i = 0; i < StepT.Length; i++)
+                {
+                    if (i == stepttt - 1)
+                    {
+                        StepT[i].SetActive(true);
+                        StepB[i].SetActive(true);
+                    }
+                    else
+                    {
+                        StepT[i].SetActive(false);
+                        StepB[i].SetActive(false);
+                    }
+                }
                 isloaded = true;
             }
             if (IsStart)
@@ -77,55 +101,65 @@ public class HoleCtrl : MonoBehaviour
                 //Debug.Log(Timing);
                 if (Timing < 1.03f)
                 {
-                    for (int i = 0; i < xmlreader.tianfus.Length; i++)
-                    {
-                        //if (!xmlreader.tianfus[i].Touched)
-                        {
-                            Vector3 VN = GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<RectTransform>().position;
-                            GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<RectTransform>().position = new Vector3(VN.x - V2[i].x, VN.y - V2[i].y, VN.z);
+                    #region 聚拢
+                    //for (int i = 0; i < xmlreader.tianfus.Length; i++)
+                    //{
+                    //    //if (!xmlreader.tianfus[i].Touched)
+                    //    {
+                    //        Vector3 VN = GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<RectTransform>().position;
+                    //        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<RectTransform>().position = new Vector3(VN.x - V2[i].x, VN.y - V2[i].y, VN.z);
 
-                            Color CN = GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().color;
-                            GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().color = new Color(CN.r, CN.g, CN.b, CN.a - 0.05f);
+                    //        Color CN = GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().color;
+                    //        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().color = new Color(CN.r, CN.g, CN.b, CN.a - 0.05f);
 
-                            Color CO = GameObject.Find(xmlreader.tianfus[i].Locate).GetComponentInChildren<RawImage>().color;
-                            GameObject.Find(xmlreader.tianfus[i].Locate).GetComponentInChildren<RawImage>().color = new Color(CO.r, CO.g, CO.b, CO.a - 0.05f);
+                    //        Color CO = GameObject.Find(xmlreader.tianfus[i].Locate).GetComponentInChildren<RawImage>().color;
+                    //        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponentInChildren<RawImage>().color = new Color(CO.r, CO.g, CO.b, CO.a - 0.05f);
 
-                            Color CM = GameObject.Find(xmlreader.tianfus[i].Locate).GetComponentInChildren<Text>().color;
-                            GameObject.Find(xmlreader.tianfus[i].Locate).GetComponentInChildren<Text>().color = new Color(CM.r, CM.g, CM.b, CM.a - 0.1f);
-                            GameObject.Find(xmlreader.tianfus[i].Locate).GetComponentInChildren<Text>().enabled = false;
-                        }
-                    }
+                    //        Color CM = GameObject.Find(xmlreader.tianfus[i].Locate).GetComponentInChildren<Text>().color;
+                    //        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponentInChildren<Text>().color = new Color(CM.r, CM.g, CM.b, CM.a - 0.1f);
+                    //        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponentInChildren<Text>().enabled = false;
+                    //    }
+                    //}
 
-                    for (int i = 0; i < Texts.Length; i++)
-                    {
-                        //Texts[i].enabled = false;
-                        Color TC = Texts[i].color;
-                        Texts[i].color = new Color(TC.r, TC.g, TC.b, TC.a - 0.1f);
-                    }
+                    //for (int i = 0; i < Texts.Length; i++)
+                    //{
+                    //    //Texts[i].enabled = false;
+                    //    Color TC = Texts[i].color;
+                    //    Texts[i].color = new Color(TC.r, TC.g, TC.b, TC.a - 0.1f);
+                    //}
 
-                    Color CP = GameObject.Find("Point").GetComponent<Image>().color;
-                    GameObject.Find("Point").GetComponent<Image>().color = new Color(CP.r, CP.g, CP.b, CP.a - 1f);
+                    //Color CP = GameObject.Find("Point").GetComponent<Image>().color;
+                    //GameObject.Find("Point").GetComponent<Image>().color = new Color(CP.r, CP.g, CP.b, CP.a - 1f);
 
-                    Color CQ = GameObject.Find("Point").GetComponentInChildren<Text>().color;
-                    GameObject.Find("Point").GetComponentInChildren<Text>().color = new Color(CQ.r, CQ.g, CQ.b, CQ.a - 1f);
-                    GameObject.Find("Point").GetComponentInChildren<Text>().enabled = false;
+                    //Color CQ = GameObject.Find("Point").GetComponentInChildren<Text>().color;
+                    //GameObject.Find("Point").GetComponentInChildren<Text>().color = new Color(CQ.r, CQ.g, CQ.b, CQ.a - 1f);
+                    //GameObject.Find("Point").GetComponentInChildren<Text>().enabled = false;
 
-                    Color CR = GameObject.Find("Right").GetComponent<Image>().color;
-                    GameObject.Find("Right").GetComponentInChildren<Text>().enabled = false;
-                    GameObject.Find("Right").GetComponent<Image>().color = new Color(CR.r, CR.g, CR.b, CR.a - 1f);
-                    
-                    //GameObject.Find("Right").GetComponent<RectTransform>().position = new Vector3(VR.x - 10f, VR.y, VR.z);
+                    //Color CR = GameObject.Find("Right").GetComponent<Image>().color;
+                    //GameObject.Find("Right").GetComponentInChildren<Text>().enabled = false;
+                    //GameObject.Find("Right").GetComponent<Image>().color = new Color(CR.r, CR.g, CR.b, CR.a - 1f);
 
-                    Color CS = GameObject.Find("Left").GetComponent<Image>().color;
-                    GameObject.Find("Left").GetComponentInChildren<Text>().enabled = false;
-                    GameObject.Find("Left").GetComponent<Image>().color = new Color(CS.r, CS.g, CS.b, CS.a - 1f);
+                    //Color CS = GameObject.Find("Left").GetComponent<Image>().color;
+                    //GameObject.Find("Left").GetComponentInChildren<Text>().enabled = false;
+                    //GameObject.Find("Left").GetComponent<Image>().color = new Color(CS.r, CS.g, CS.b, CS.a - 1f);
 
-                    //GameObject.Find("Left").GetComponent<RectTransform>().position = new Vector3(VS.x + 10f, VS.y, VS.z);
-
+                    ////GameObject.Find("Right").GetComponent<RectTransform>().position = new Vector3(VR.x - 10f, VR.y, VR.z);
+                    ////GameObject.Find("Left").GetComponent<RectTransform>().position = new Vector3(VS.x + 10f, VS.y, VS.z);
+                    #endregion
+                    #region 变黑
+                    heipingG.SetActive(true);
+                    heiping.color = new Color(heiping.color.r, heiping.color.g, heiping.color.b, heiping.color.a + 0.05f);
+                    #endregion
                 }
-                if (Timing > 1.5f)
+                if (Timing > 1.03f)
                 {
                     Color C = new Color(255, 255, 255, 1);
+
+                    for (int i = 0; i < StepT.Length; i++)
+                    {
+                        StepT[i].SetActive(true);
+                        StepB[i].SetActive(true);
+                    }
 
                     for (int i = 0; i < xmlreader.tianfus.Length; i++)
                     {
@@ -143,6 +177,8 @@ public class HoleCtrl : MonoBehaviour
                         Texts[i].color = C;
                     }
 
+
+
                     GameObject.Find("Point").GetComponent<Image>().color = C;
                     GameObject.Find("Point").GetComponentInChildren<Text>().color = C;
                     GameObject.Find("Point").GetComponentInChildren<Text>().enabled = true;
@@ -159,9 +195,10 @@ public class HoleCtrl : MonoBehaviour
                     IsStart = false;
                     isloaded = false;
                     Timing = 0;
-                    points = 20;
+                    heipingG.SetActive(false);
+                    heiping.color = new Color(heiping.color.r, heiping.color.g, heiping.color.b, 0);
                     TwiceTouch = string.Empty;
-                    Gtemp = null;                 
+                    Gtemp = null;
                 }
             }
         }
@@ -185,7 +222,7 @@ public class HoleCtrl : MonoBehaviour
         GameObject.Find("Points").GetComponent<Text>().text = points.ToString();
         if (points < 0)
             GameObject.Find("Points").GetComponent<Text>().color = Red;
-        else if(points>0)
+        else if (points > 0)
             GameObject.Find("Points").GetComponent<Text>().color = White;
         else
             GameObject.Find("Points").GetComponent<Text>().color = Green;
@@ -199,16 +236,17 @@ public class HoleCtrl : MonoBehaviour
         tianfu x = xmlreader.tianfus[xmlreader.LoNuDict[G.name]];
         GameObject.Find("Info").GetComponent<Text>().text = x.Info;
         GameObject.Find("Info2").GetComponent<Text>().text = x.Name;
-        GameObject.Find("Info3").GetComponent<Text>().text = x.Info2;
+        //GameObject.Find("Info3").GetComponent<Text>().text = x.Info2;
+        GameObject.Find("Info3").GetComponent<Text>().text = x.Info3;
         GameObject.Find("Info4").GetComponent<Text>().text = x.Info4;
         GameObject.Find("Info5").GetComponent<Text>().text = x.Info5;
-        GameObject.Find("Info6").GetComponent<Text>().text = x.Info3;
+        //GameObject.Find("Info6").GetComponent<Text>().text = x.Info3;
         if (G.name == "8" || G.name == "9" || G.name == "21" || G.name == "22" || G.name == "34" || G.name == "35") return;
         if (points <= 0 && !x.Touched) return;
-        //G.GetComponent<Image>().sprite = IsTouched[1];
-        //if (Gtemp != null && Gtemp != G) Gtemp.GetComponent<Image>().sprite = IsTouched[0];
+        //G.GetComponent<Image>().sprite = NewSprites[1];
+        //if (Gtemp != null && Gtemp != G) Gtemp.GetComponent<Image>().sprite = NewSprites[0];
         Gtemp = G;
-        if (G.name == TwiceTouch)
+        //if (G.name == TwiceTouch)
         {
             if (x.CombainNum != "")
             {
@@ -257,18 +295,35 @@ public class HoleCtrl : MonoBehaviour
                 if (xmlreader.Combian[x.Name].AorD == "A")
                 {
                     //Debug.Log(xmlreader.Combian[x.Name].Locate);
-                    GameObject.Find(xmlreader.Combian[x.Name].Locate).GetComponent<Image>().sprite = IsTouched[1];
+                    try
+                    {
+                        GameObject.Find(xmlreader.Combian[x.Name].Locate).GetComponent<Image>().sprite = NewSprites[1];
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log(e);
+                    }
                 }
                 else if (xmlreader.Combian[x.Name].AorD == "D")
                 {
-                    GameObject.Find(xmlreader.Combian[x.Name].Locate).GetComponent<Image>().sprite = IsTouched[3];
+                    GameObject.Find(xmlreader.Combian[x.Name].Locate).GetComponent<Image>().sprite = NewSprites[3];
                 }
             }
         }
         else
         {
             points = points + int.Parse(x.Info2);
-            if (xmlreader.Combian.ContainsKey(x.Name)) GameObject.Find(xmlreader.Combian[x.Name].Locate).GetComponent<Image>().sprite = IsTouched[0];
+            if (xmlreader.Combian.ContainsKey(x.Name))
+            {
+                try
+                {
+                    GameObject.Find(xmlreader.Combian[x.Name].Locate).GetComponent<Image>().sprite = NewSprites[0];
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e);
+                }
+            }
             for (int i = 0; i < LG.Count; i++)
             {
                 if (x.Name == DG[LG[i]].CombainNum && DG[LG[i]].Touched)
@@ -301,28 +356,28 @@ public class HoleCtrl : MonoBehaviour
     public void StartButton()
     {
         tianfu[] T = xmlreader.tianfus;
-        bool XB1 = true;
-        bool XB2 = true;
-        bool XB3 = true;
-        for (int i = 0; i < T.Length; i++)
-        {
-            if (T[i].AorD == "A")
-            {
-                switch (T[i].step)
-                {
-                    case 1:
-                        if (T[i].Touched) XB1 = false;
-                        break;
-                    case 2:
-                        if (T[i].Touched) XB2 = false;
-                        break;
-                    case 3:
-                        if (T[i].Touched) XB3 = false;
-                        break;
-                }
-            }
-        }
-        if (XB1 || XB2 || XB3) return;
+        //bool XB1 = true;
+        //bool XB2 = true;
+        //bool XB3 = true;
+        //for (int i = 0; i < T.Length; i++)
+        //{
+        //    if (T[i].AorD == "A")
+        //    {
+        //        switch (T[i].step)
+        //        {
+        //            case 1:
+        //                if (T[i].Touched) XB1 = false;
+        //                break;
+        //            case 2:
+        //                if (T[i].Touched) XB2 = false;
+        //                break;
+        //            case 3:
+        //                if (T[i].Touched) XB3 = false;
+        //                break;
+        //        }
+        //    }
+        //}
+        //if (XB1 || XB2 || XB3) return;
         if (points < 0) return;
         IsStart = true;
     }
@@ -336,21 +391,21 @@ public class HoleCtrl : MonoBehaviour
                 switch (xmlreader.tianfus[i].AorD)
                 {
                     case "A":
-                        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().sprite = IsTouched[1];
+                        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().sprite = NewSprites[1];
                         break;
                     case "D":
-                        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().sprite = IsTouched[3];
+                        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().sprite = NewSprites[3];
                         break;
                     case "CA":
-                        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().sprite = IsTouched[5];
+                        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().sprite = NewSprites[5];
                         break;
                     case "CD":
-                        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().sprite = IsTouched[6];
+                        GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().sprite = NewSprites[6];
                         break;
                 }
                 if (xmlreader.tianfus[i].CombainNum != "")
                 {
-                    GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().sprite = IsTouched[0];
+                    GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().sprite = NewSprites[0];
                     GameObject.Find(xmlreader.tianfus[i].Locate).GetComponentInChildren<Text>().color = new Color(147, 147, 147, 255);
                 }
             }
@@ -359,7 +414,7 @@ public class HoleCtrl : MonoBehaviour
         {
             for (int i = 0; i < xmlreader.tianfus.Length; i++)
             {
-                GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().sprite = IsTouched[0];
+                GameObject.Find(xmlreader.tianfus[i].Locate).GetComponent<Image>().sprite = NewSprites[0];
             }
         }
     }

@@ -18,5 +18,6 @@ public class StepOneCtr : MonoBehaviour {
     {
         HoleCtrl.IsStep1 = false;
         HoleCtrl.IsStep2 = true;
+        udpouter.SocketSend("Step1");
     }
 }

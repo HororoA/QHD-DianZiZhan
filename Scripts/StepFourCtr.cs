@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class StepFourCtr : MonoBehaviour
 {
 
     public UnityEngine.UI.Text[] T;
     public GameObject[] wrl;
-
+    public Sprite[] weq;
 
     double d1;
     double d2;
@@ -44,37 +45,78 @@ public class StepFourCtr : MonoBehaviour
 
             if (Timer >= 2.5f)
             {
-                if (d1 < 1000)
+                if (d1 >= 1000 && d1 < 10000)
+                {
+                    T[0].text = "0" + d1.ToString();
+                }
+                else if (d1 >= 100 && d1 < 1000)
                 {
                     T[0].text = "00" + d1.ToString();
                 }
-                else if (d1 >= 1000 && d1 < 10000)
+                else if (d1 >= 10 && d1 < 100)
                 {
-                    T[0].text = "0" + d1.ToString();
+                    T[0].text = "000" + d1.ToString();
+                }
+                else if (d1 > 0 && d1 < 10)
+                {
+                    T[0].text = "0000" + d1.ToString();
+                }
+                else if (d1 == 0)
+                {
+                    T[0].text = "00000";
                 }
                 else if (d1 >= 10000)
                 {
                     T[0].text = d1.ToString();
                 }
-                if (d2 < 1000)
+                if (d2 >= 100 && d2 < 1000)
                 {
                     T[1].text = "00" + d2.ToString();
                 }
-                else if (d1 >= 1000 && d1 < 10000)
+                else if (d2 >= 1000 && d2 < 10000)
                 {
                     T[1].text = "0" + d2.ToString();
                 }
-                else if (d1 >= 10000)
+                else if (d2 >= 10 && d2 < 100)
+                {
+                    T[1].text = "000" + d2.ToString();
+                }
+                else if (d2 >= 1 && d2 < 10)
+                {
+                    T[1].text = "0000" + d2.ToString();
+                }
+                else if (d2 == 0)
+                {
+                    T[1].text = "00000" + d2.ToString();
+                }
+                else if (d2 >= 10000)
                 {
                     T[1].text = d2.ToString();
                 }
                 if (NewStepThreeCtr.PlayerScore.Step4 > NewStepThreeCtr.PCSocre.Step4)
                 {
-                    wrl[0].SetActive(true);
+                    GameObject.Find("BG").GetComponent<Image>().sprite = weq[0];
                 }
                 else
                 {
+                    GameObject.Find("BG").GetComponent<Image>().sprite = weq[1];
+                }
+                float soure = NewStepThreeCtr.PlayerScore.Step4 - NewStepThreeCtr.PCSocre.Step4;
+                if (soure > 2000)
+                {
+                    wrl[0].SetActive(true);
+                }
+                if (soure > 0 && soure <= 2000)
+                {
                     wrl[1].SetActive(true);
+                }
+                if (soure > -2000 && soure <= 0)
+                {
+                    wrl[2].SetActive(true);
+                }
+                if (soure < -2000)
+                {
+                    wrl[3].SetActive(true);
                 }
             }
         }
@@ -135,6 +177,7 @@ public class StepFourCtr : MonoBehaviour
         HoleCtrl.IsStep4 = false;
         NewStepThreeCtr.PlayerScore.ClearScore();
         NewStepThreeCtr.PCSocre.ClearScore();
+        HoleCtrl.stepttt = 1;
         for (int i = 0; i < xmlreader.tianfus.Length; i++)
         {
             xmlreader.tianfus[i].Touched = false;
@@ -142,7 +185,12 @@ public class StepFourCtr : MonoBehaviour
         Timer = 0;
         df1 = 0;
         df2 = 0;
+        T[1].text = "00000";
+        T[0].text = "00000";
         wrl[0].SetActive(false);
         wrl[1].SetActive(false);
+        wrl[2].SetActive(false);
+        wrl[3].SetActive(false);
+
     }
 }

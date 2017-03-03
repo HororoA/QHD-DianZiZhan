@@ -1,4 +1,4 @@
-锘縰sing UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -19,12 +19,15 @@ public class NewStepThreeCtr : MonoBehaviour {
     public Vector3[] VPL2;
     public Vector3[] VPC2;
 
-    float Timeer = -2;
+    float Timeer = -3;
 
-    List<int> PLC = new List<int>(); //鐜╁鍒囨崲鐐逛綅
-    List<int> PCC = new List<int>(); //鏈哄櫒鍒囨崲鐐逛綅
-    int PLCcount; //鐜╁绗琗涓垏鎹㈢偣
-    int PCCcount; //鏈哄櫒绗琗涓垏鎹㈢偣
+    public Image heiping;
+    public GameObject heipingG;
+
+    List<int> PLC = new List<int>(); //玩家切换点位
+    List<int> PCC = new List<int>(); //机器切换点位
+    int PLCcount; //玩家第X个切换点
+    int PCCcount; //机器第X个切换点
 
     public static Score PlayerScore = new Score();
     public static Score PCSocre = new Score();
@@ -35,6 +38,13 @@ public class NewStepThreeCtr : MonoBehaviour {
     public static int xuliehao = 0;
 
     public static string TianfuNumber = string.Empty;
+    string UdpStep = "Step1";
+
+    bool ishaveloaded1 = true;
+    bool ishaveloaded2 = true;
+
+    int PLTempCount = 0;
+    int PCTempCount = 0;
 
 	// Use this for initialization
     void Start()
@@ -65,6 +75,7 @@ public class NewStepThreeCtr : MonoBehaviour {
             {
                 guan();
                 string[] S = StringS(TianfuNumber);
+                //Debug.Log(S[0]);
                 for (int i = 0; i < S.Length; i++)
                 {
                     switch (S[i])
@@ -78,9 +89,35 @@ public class NewStepThreeCtr : MonoBehaviour {
                         case "end":
                             guan();
                             break;
+                        case "New1":
+                            if (ishaveloaded1)
+                            {
+                                HoleCtrl.IsStep2 = true;
+                                HoleCtrl.IsStep3 = false;
+                                isstart = false;
+                                haveloaded = false;
+                                UdpStep = "Step2";
+                                HoleCtrl.stepttt = 2;
+                                ishaveloaded1 = false;
+                            }
+                            break;
+                        case "New2":
+                            if (ishaveloaded2)
+                            {
+                                HoleCtrl.IsStep2 = true;
+                                HoleCtrl.IsStep3 = false;
+                                isstart = false;
+                                haveloaded = false;
+                                UdpStep = "Step3";
+                                HoleCtrl.stepttt = 3;
+                                ishaveloaded2 = false;
+                            }
+                            break;
                         case "Four":
                             isstart = false;
                             haveloaded = false;
+                            ishaveloaded1 = true;
+                            ishaveloaded2 = true;
                             PLC.Clear();
                             PCC.Clear();
                             PLCcount = 0;
@@ -100,6 +137,7 @@ public class NewStepThreeCtr : MonoBehaviour {
                             PCSocre.Step4 = float.Parse(S[2]);
                             HoleCtrl.IsStep3 = false;
                             HoleCtrl.IsStep4 = true;
+                            UdpStep = "Step1";
                             break;
                         default:
                             break;
@@ -141,7 +179,7 @@ public class NewStepThreeCtr : MonoBehaviour {
     {
         for (int i = 0; i < PlayerStep.Count; i++)
         {
-            Debug.Log("PL:," + number);
+            //Debug.Log("PL:," + number);
             if (PlayerStep[i].Number == number)
             {
                 if (PlayerStep[i].AorD == "A")
@@ -160,7 +198,7 @@ public class NewStepThreeCtr : MonoBehaviour {
     {
         for (int i = 0; i < PCStep.Count; i++)
         {
-            Debug.Log("PC:," + number);
+            //Debug.Log("PC:," + number);
             if (PCStep[i].Number == number)
             {
                 if (PCStep[i].AorD == "A")
@@ -185,9 +223,12 @@ public class NewStepThreeCtr : MonoBehaviour {
                 //GameObject.Find("ceshi").GetComponent<Text>().text = IP;
                 SelectedTianfuLoading();
                 //Pcloading();
-                Pcloading2();
+                //Pcloading2();
+                Pcloading3(UdpStep);
+                //for (int i = PLTempCount; i < PlayerStep.Count; i++)
                 for (int i = 0; i < PlayerStep.Count; i++)
                 {
+                    //Debug.Log("PL：" + i);
                     Player[i].SetActive(true);
                     Player[i].GetComponentInChildren<Text>().text = PlayerStep[i].Name;
                     Player[i].GetComponentInChildren<Text>().color = new Color(255, 255, 255, 0);
@@ -206,9 +247,12 @@ public class NewStepThreeCtr : MonoBehaviour {
                         PLC.Add(i);
                     }
                 }
+                PLTempCount = PlayerStep.Count;
                 PLC.Add(PlayerStep.Count);
+                //for (int i = PCTempCount; i < PCStep.Count; i++)
                 for (int i = 0; i < PCStep.Count; i++)
                 {
+                    //Debug.Log("PC：" + i);
                     PC[i].SetActive(true);
                     PC[i].GetComponentInChildren<Text>().text = PCStep[i].Name;
                     PC[i].GetComponentInChildren<Text>().color = new Color(255, 255, 255, 0);
@@ -227,6 +271,7 @@ public class NewStepThreeCtr : MonoBehaviour {
                         PCC.Add(i);
                     }
                 }
+                PCTempCount = PCStep.Count;
                 PCC.Add(PCStep.Count);
                 haveloaded = true;
             }
@@ -234,9 +279,14 @@ public class NewStepThreeCtr : MonoBehaviour {
             DiWoText[0].color = new Color(DiWoText[0].color.r, DiWoText[0].color.g, DiWoText[0].color.b, DiWoText[0].color.a + 0.1f);
             DiWoText[1].color = new Color(DiWoText[1].color.r, DiWoText[1].color.g, DiWoText[1].color.b, DiWoText[1].color.a + 0.1f);
 
-            if (Timeer < -1)
+            if (Timeer < -2)
             {
-                donghua(0,true);
+                heipingG.SetActive(true);
+                heiping.color = new Color(heiping.color.r, heiping.color.g, heiping.color.b, heiping.color.a - 0.05f);
+            }
+            if (Timeer < -1f && Timeer > -2)
+            {
+                donghua(0, true);
                 donghua(1, true);
                 donghua(2, true);
                 donghua(3, true);
@@ -278,8 +328,7 @@ public class NewStepThreeCtr : MonoBehaviour {
         }
         else
         {
-            //Debug.Log(HoleCtrl.sendstr + "PC;" + HoleCtrl.sendstr2);
-            udpouter.SocketSend(HoleCtrl.sendstr + "PC;" + HoleCtrl.sendstr2);
+            udpouter.SocketSend(UdpStep + ";" + HoleCtrl.sendstr + "PC;" + HoleCtrl.sendstr2);
             Timeer = -2;
             haveloaded = true;
             isstart = true;
@@ -303,6 +352,63 @@ public class NewStepThreeCtr : MonoBehaviour {
             PC[i].GetComponent<RectTransform>().position = new Vector3(v2.x + VPC2[i].x, v2.y + VPC2[i].y, v2.z + VPC2[i].z);
             PC[i].GetComponentInChildren<Text>().color = new Color(255, 255, 255, PC[i].GetComponentInChildren<Text>().color.a + 0.1f);
             PC[i].GetComponentInChildren<Image>().color = new Color(255, 255, 255, PC[i].GetComponentInChildren<Image>().color.a + 0.1f);
+        }
+    }
+
+    void Pcloading3(string step)
+    {
+        int stepnum = 0;
+        int points = 0;
+        float f = 0;
+        switch (step)
+        {
+            case "Step1":
+                stepnum = 1;
+                points = 5;
+                f = UnityEngine.Random.Range(0, 8);
+                break;
+            case "Step2":
+                stepnum = 2;
+                points = 6;
+                f = UnityEngine.Random.Range(12, 17);
+                break;
+            case "Step3":
+                stepnum = 3;
+                points = 9;
+                f = UnityEngine.Random.Range(22, 29);
+                break;
+        }
+        double bb = Math.Round(f, 0);
+        string bs = bb.ToString();
+        xmlreader.tianfus[int.Parse(bs)].Touched = true;
+        tianfu TT = xmlreader.tianfus[int.Parse(bs)];
+        PCStep.Add(TT);
+        //while (points == 0)
+        //{
+        //    for (int i = 0; i < xmlreader.tianfus.Length; i++)
+        //    {
+        //        tianfu T = xmlreader.tianfus[i];
+        //        if (T.step == stepnum)
+        //        {
+        //            float fb = UnityEngine.Random.Range(0, 36);
+        //            double b = Math.Round(fb, 0);
+        //            string s = b.ToString();
+        //            if (!xmlreader.tianfus[int.Parse(s)].Touched)
+        //            {
+        //                xmlreader.tianfus[int.Parse(s)].Touched = true;
+        //                tianfu TTT = xmlreader.tianfus[int.Parse(s)];
+        //                PCStep.Add(TTT);
+        //            }
+        //        }
+        //    }
+        //}
+        for (int i = 0; i < PCStep.Count; i++)
+        {
+            HoleCtrl.sendstr2 = HoleCtrl.sendstr2 + PCStep[i].Number + ";";
+        }
+        for (int i = 0; i < xmlreader.tianfus.Length; i++)
+        {
+            xmlreader.tianfus[i].Touched = false;
         }
     }
 
@@ -484,15 +590,15 @@ public class NewStepThreeCtr : MonoBehaviour {
     
     void SwitchDown()
     {
-        for (int i = 0; i < 9; i++)
-        {
-            //PC[i].SetActive(false);
-            //PC[i].GetComponent<Image>().sprite = S[2];
-            //Player[i].SetActive(false);
-            //Player[i].GetComponent<Image>().sprite = S[3];
-            //T[0].text = "";
-            //T[1].text = "";
-        }
+        //for (int i = 0; i < 9; i++)
+        //{
+        //    //PC[i].SetActive(false);
+        //    //PC[i].GetComponent<Image>().sprite = S[2];
+        //    //Player[i].SetActive(false);
+        //    //Player[i].GetComponent<Image>().sprite = S[3];
+        //    //T[0].text = "";
+        //    //T[1].text = "";
+        //}
     }
 
     string[] StringS(string s)
